@@ -59,32 +59,60 @@ export default function ContactSection() {
       const ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
 
       if (!ACCESS_KEY) {
-        throw new Error("Web3Forms access key is missing. Add your access key to the form code.");
+        throw new Error("Web3Forms Access Key Missing");
       }
 
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          access_key: ACCESS_KEY,
-          name: formData.name,
-          email: formData.email,
-          subject: formData.subject || "New Portfolio Contact Form Submission",
-          message: formData.message,
-          from_name: formData.name,
-          botcheck: "",
-        }),
-      });
+      const form = new FormData();
+
+      form.append("access_key", ACCESS_KEY);
+
+      // User Details
+      form.append("name", formData.name);
+      form.append("email", formData.email);
+
+      // Portfolio Details
+      form.append("from_name", "Parul Sharma Portfolio");
+      form.append("replyto", formData.email);
+
+      // Subject
+      form.append(
+        "subject",
+        formData.subject || `New Portfolio Contact - ${formData.name}`
+      );
+
+      // Complete Message
+      form.append(
+        "message",
+        `
+        Name : ${formData.name}
+
+        Email : ${formData.email}
+
+        Subject : ${formData.subject || "-"}
+
+        Message :
+
+      ${formData.message}
+      `
+      );
+
+      // Honeypot
+      form.append("botcheck", "");
+
+      const response = await fetch(
+        "https://api.web3forms.com/submit",
+        {
+          method: "POST",
+          body: form,
+        }
+      );
 
       const result = await response.json();
 
       if (result.success) {
         setStatus({
           type: "success",
-          message: "Message sent successfully! I'll get back to you soon.",
+          message: "Message sent successfully!",
         });
 
         setFormData({
@@ -94,14 +122,14 @@ export default function ContactSection() {
           message: "",
         });
       } else {
-        throw new Error(result.message || "Unable to send message.");
+        throw new Error(result.message);
       }
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.error(err);
 
       setStatus({
         type: "error",
-        message: "Failed to send message. Please try again.",
+        message: "Something went wrong.",
       });
     }
   };
