@@ -1,10 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: 'class',
   content: [
-  "./app/**/*.{js,ts,jsx,tsx,mdx}",
-  "./components/**/*.{js,ts,jsx,tsx,mdx}",
-],
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  darkMode: 'class',
   theme: {
     container: {
       center: true,
@@ -12,8 +12,8 @@ module.exports = {
     },
     extend: {
       colors: {
-        background: { DEFAULT: 'var(--background)' },
-        foreground: { DEFAULT: 'var(--foreground)' },
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
         primary: {
           DEFAULT: 'var(--primary)',
           foreground: 'var(--primary-foreground)',
@@ -34,9 +34,9 @@ module.exports = {
           DEFAULT: 'var(--card)',
           foreground: 'var(--card-foreground)',
         },
-        border: { DEFAULT: 'var(--border)' },
-        input: { DEFAULT: 'var(--input)' },
-        ring: { DEFAULT: 'var(--ring)' },
+        border: 'var(--border)',
+        input: 'var(--input)',
+        ring: 'var(--ring)',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -44,8 +44,9 @@ module.exports = {
         sm: 'calc(var(--radius) - 4px)',
       },
       fontFamily: {
-        sans: ['var(--font-sans)', 'sans-serif'],
-        display: ['var(--font-display)', 'serif'],
+        sans: ['var(--font-plus-jakarta-sans)', 'sans-serif'],
+        display: ['var(--font-orbitron)', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace'],
       },
     },
   },

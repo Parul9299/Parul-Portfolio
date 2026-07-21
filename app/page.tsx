@@ -1,36 +1,24 @@
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import HeroSection from '@/app/components/HeroSection';
-import ProjectGallery from '@/app/components/ProjectGallery';
-import ServicesSection from '@/app/components/ServicesSection';
-import ExperienceSection from '@/app/components/ExperienceSection';
-import TestimonialsSection from '@/app/components/TestimonialsSection';
-import ContactSection from '@/app/components/ContactSection';
-import ScrollRevealInit from '@/app/components/ScrollRevealInit';
+import React from 'react';
+import Header from '../components/Header';
+import HeroSection from './components/HeroSection';
+import AboutSection from './components/AboutSection';
+import SkillsSection from './components/SkillsSection';
+import ProjectsSection from './components/ProjectsSection';
+import ContactSection from './components/ContactSection';
+import Footer from '../components/Footer';
 
 export default function HomePage() {
   return (
-    <main className="relative overflow-x-hidden bg-background">
-      {/* Decorative grid overlay */}
-      <div className="grid-overlay-lines" aria-hidden="true">
-        <div className="grid-inner-lines">
-          <div className="grid-line-v" />
-          <div className="grid-line-v" />
-          <div className="grid-line-v" />
-          <div className="grid-line-v" />
-          <div className="grid-line-v" />
-        </div>
-      </div>
-
+    <main className="relative min-h-screen bg-background overflow-x-hidden dot-grid">
+      {/* Scanline overlay */}
+      <div className="fixed inset-0 scanline pointer-events-none z-[1]" />
       <Header />
       <HeroSection />
-      <ProjectGallery />
-      <ServicesSection />
-      <ExperienceSection />
-      <TestimonialsSection />
+      <AboutSection />
+      <SkillsSection />
+      <ProjectsSection />
       <ContactSection />
       <Footer />
-      <ScrollRevealInit />
     </main>
   );
 }

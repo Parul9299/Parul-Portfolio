@@ -1,20 +1,19 @@
 import React from 'react';
 import type { Metadata, Viewport } from 'next';
-import { DM_Sans, Fraunces } from 'next/font/google';
-import '../styles/index.css';
+import { Orbitron, Plus_Jakarta_Sans } from 'next/font/google';
 import '../styles/tailwind.css';
 
-const dmSans = DM_Sans({
+const orbitron = Orbitron({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-sans',
+  weight: ['400', '500', '600', '700', '800', '900'],
+  variable: '--font-orbitron',
   display: 'swap',
 });
 
-const fraunces = Fraunces({
+const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '900'],
-  variable: '--font-display',
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-plus-jakarta-sans',
   display: 'swap',
 });
 
@@ -25,27 +24,29 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
-  title: 'Kabir Khan — Senior Graphic Designer Portfolio',
-  description: 'Senior Graphic Designer specializing in branding, packaging, print, and digital media. 3+ years at top agencies in India. Available for freelance and full-time roles.',
+  title: 'Parul Sharma — Full-Stack & Mobile App Developer',
+  description: 'Portfolio of Parul Sharma, a Full-Stack & Mobile App Developer from Bharatpur, India. Expert in MERN stack, React Native, and modern web development.',
   icons: {
-    icon: [
-      { url: '/favicon.ico', type: 'image/x-icon' }
-    ],
+    icon: [{ url: '/favicon.ico', type: 'image/x-icon' }],
+  },
+  openGraph: {
+    title: 'Parul Sharma — Full-Stack Developer',
+    description: 'MERN stack & React Native developer building innovative digital experiences.',
+    images: [{ url: '/images/app_logo.png', width: 1200, height: 630 }],
   },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${dmSans.variable} ${fraunces.variable}`}>
-      <body className={dmSans.className}>
+    <html lang="en" className={`${orbitron.variable} ${plusJakartaSans.variable}`}>
+      <body className={plusJakartaSans.className}>
         {children}
 
-        <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fkabirkhan4818back.builtwithrocket.new&_be=https%3A%2F%2Fappanalytics.rocket.new&_v=0.1.19" />
-        <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.2" /></body>
+        {/* <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fparulsharm8725back.builtwithrocket.new&_be=https%3A%2F%2Fappanalytics.rocket.new&_v=0.1.19" />
+        <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.2" /> */}
+        </body>
     </html>
   );
 }

@@ -1,31 +1,42 @@
 import React from 'react';
-import Link from 'next/link';
-import AppLogo from '@/components/ui/AppLogo';
+import AppLogo from './ui/AppLogo';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border py-10">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-          {/* Logo + Brand */}
-          <div className="flex items-center gap-2">
-            <AppLogo size={28} />
-            <span className="font-display text-sm font-medium text-muted-foreground hidden sm:block">
-              Kabir Khan
-            </span>
-          </div>
-
-          {/* Links */}
-          <div className="flex items-center gap-6 text-sm text-muted-foreground">
-            <Link href="#work" className="hover:text-foreground transition-colors">Work</Link>
-            <Link href="#services" className="hover:text-foreground transition-colors">Services</Link>
-            <Link href="#contact" className="hover:text-foreground transition-colors">Contact</Link>
-          </div>
-
-          {/* Copyright */}
-          <p className="text-sm text-muted-foreground">
-            © 2026 Kabir Khan · <Link href="#" className="hover:text-foreground transition-colors">Privacy</Link>
-          </p>
+    <footer className="border-t border-border py-8 px-4">
+      <div className="max-w-[100%] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="flex items-center gap-2">
+          <AppLogo size={24} />
+          <span className="font-display text-xs tracking-widest text-muted-foreground">
+            PARUL SHARMA
+          </span>
+        </div>
+        <p className="font-display text-xs tracking-wider text-muted-foreground text-center">
+          © 2026 Parul Sharma. All rights reserved.
+        </p>
+        <div className="flex items-center gap-6 text-xs text-muted-foreground">
+          <a
+            href="https://github.com/parul9299"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-primary transition-colors"
+          >
+            GitHub
+          </a>
+          <a
+            href="https://www.linkedin.com/in/parul-sharma9299"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-primary transition-colors"
+          >
+            LinkedIn
+          </a>
+          <a
+            href="mailto:sharma1234parul@gmail.com"
+            className="hover:text-primary transition-colors"
+          >
+            Email
+          </a>
         </div>
       </div>
     </footer>
