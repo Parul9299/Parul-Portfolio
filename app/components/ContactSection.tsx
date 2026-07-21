@@ -56,7 +56,11 @@ export default function ContactSection() {
     });
 
     try {
-      const ACCESS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY";
+      const ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+
+      if (!ACCESS_KEY) {
+        throw new Error("Web3Forms access key is missing. Add your access key to the form code.");
+      }
 
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -66,17 +70,11 @@ export default function ContactSection() {
         },
         body: JSON.stringify({
           access_key: ACCESS_KEY,
-
           name: formData.name,
           email: formData.email,
-          subject: formData.subject,
+          subject: formData.subject || "New Portfolio Contact Form Submission",
           message: formData.message,
-
           from_name: formData.name,
-
-          // Email kis address par receive hogi
-          // Ye Web3Forms dashboard me configured email par hi aayegi.
-
           botcheck: "",
         }),
       });
@@ -96,7 +94,7 @@ export default function ContactSection() {
           message: "",
         });
       } else {
-        throw new Error(result.message);
+        throw new Error(result.message || "Unable to send message.");
       }
     } catch (error) {
       console.error(error);
@@ -342,31 +340,6 @@ export default function ContactSection() {
                     {status.type === 'loading' ? 'Sending message...' : status.message}
                   </div>
                 )}
-
-                <input
-                  type="hidden"
-                  name="access_key"
-                  value="YOUR_WEB3FORMS_ACCESS_KEY"
-                />
-
-                <input
-                  type="hidden"
-                  name="subject"
-                  value="New Portfolio Contact Form Submission"
-                />
-
-                <input
-                  type="hidden"
-                  name="from_name"
-                  value="Parul Sharma Portfolio"
-                />
-
-                <input
-                  type="checkbox"
-                  name="botcheck"
-                  className="hidden"
-                  style={{ display: "none" }}
-                />
 
                 <button
                   type="submit"
